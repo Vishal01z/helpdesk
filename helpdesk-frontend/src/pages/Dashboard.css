@@ -1,0 +1,168 @@
+/* ================= DASHBOARD BASE ================= */
+.dashboard-bg {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 25%, #581c87 50%, #1e1b4b 75%, #0f172a 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+}
+
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(168, 85, 247, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* ================= KEYFRAMES ================= */
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(30px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity:0; transform:translateX(50px); }
+  to { opacity:1; transform:translateX(0); }
+}
+
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.8} }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+@keyframes shimmer { 0%{background-position:-1000px 0} 100%{background-position:1000px 0} }
+@keyframes gradientShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ================= BLOBS ================= */
+.blob-purple, .blob-pink, .blob-blue {
+position: absolute;
+width: 24rem;
+height: 24rem;
+border-radius: 50%;
+mix-blend-mode: multiply; /* missing value added */
+filter: blur(3rem);
+opacity: 0.1;
+animation: pulse 6s ease-in-out infinite;
+}
+.blob-purple { top:25%; left:-12rem; background:#a855f7; }
+.blob-pink { bottom:25%; right:-12rem; background:#ec4899; animation-delay:2s; }
+.blob-blue { top:50%; left:50%; background:#3b82f6; animation-delay:4s; }
+
+/* ================= HEADER ================= */
+.header-card {
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(20px);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  position:sticky; top:0; z-index:50;
+  animation: slideInRight 0.8s ease-out;
+}
+
+.header-content {
+  max-width:1280px; margin:0 auto; padding:1rem 1.5rem;
+  display:flex; justify-content:space-between; align-items:center;
+}
+
+.logo-section { display:flex; align-items:center; gap:1rem; }
+.logo-icon {
+  width:3rem; height:3rem; background:linear-gradient(to br,#7b7382,#ec4899); border-radius:1rem;
+  display:flex; justify-content:center; align-items:center; box-shadow:0 0 15px rgba(168,85,247,0.5); transition:transform 0.3s;
+}
+.logo-icon:hover { transform:rotate(12deg); }
+
+.title { color:white; font-size:1.5rem; font-weight:bold; display:flex; align-items:center; gap:0.5rem; }
+.subtitle { font-size:0.8rem; color:#d8b4fe; }
+
+.user-section { display:flex; align-items:center; gap:1rem; }
+.user-info { display:flex; align-items:center; gap:0.5rem; padding:0.25rem 1rem; background:rgba(255,255,255,0.05); border-radius:1rem; border:1px solid rgba(255,255,255,0.1); }
+.user-icon { width:2.5rem; height:2.5rem; background:linear-gradient(to br,#a855f7,#ec4899); border-radius:50%; display:flex; justify-content:center; align-items:center; }
+.user-name { color:white; font-weight:500; font-size:0.9rem; }
+.role-badge {
+  font-weight:600; font-size:0.7rem; padding:0.15rem 0.5rem; border-radius:999px;
+  background: linear-gradient(90deg, rgba(168,85,247,0.3) 0%, rgba(236,72,153,0.4) 50%, rgba(168,85,247,0.3) 100%);
+  background-size:200% 100%;
+  animation: shimmer 3s infinite;
+  color:#d8b4fe;
+}
+
+.logout-btn {
+  display:flex; align-items:center; gap:0.25rem; padding:0.5rem 1.25rem; background:rgba(220,38,38,0.2);
+  color:#f87171; border-radius:0.75rem; border:1px solid rgba(220,38,38,0.3);
+  transition: all 0.3s; font-weight:500;
+}
+.logout-btn:hover { background:rgba(220,38,38,0.3); transform:scale(1.05); }
+.logout-btn:active { transform:scale(0.95); }
+
+/* ================= STATS ================= */
+.stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(12rem,1fr)); gap:1.5rem; margin-bottom:2rem; }
+.stat-card {
+  padding:1.5rem; border-radius:1rem; background:linear-gradient(to br,rgba(255,255,255,0.1),rgba(255,255,255,0.05));
+  backdrop-blur:12px; border:1px solid rgba(255,255,255,0.2); box-shadow:0 10px 25px rgba(0,0,0,0.2); display:flex; justify-content:space-between;
+  animation: fadeInUp 0.6s ease-out;
+  transition:all 0.3s ease;
+}
+.stat-card:hover { transform:translateY(-8px) scale(1.02); box-shadow:0 20px 40px rgba(168,85,247,0.3); }
+.stat-icon { width:3.5rem; height:3.5rem; display:flex; justify-content:center; align-items:center; animation:float 3s ease-in-out infinite; }
+
+/* ================= FILTER & SEARCH ================= */
+.filter-search { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; margin-bottom:2rem; }
+.filter-buttons { display:flex; flex-wrap:wrap; gap:0.5rem; }
+.filter-btn {
+  padding:0.5rem 1.25rem; border-radius:0.75rem; font-weight:600; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.05); color:#d8b4fe;
+  transition:all 0.3s;
+}
+.filter-btn:hover { background:rgba(255,255,255,0.1); }
+.filter-btn.active {
+  background:linear-gradient(to right,#a855f7,#ec4899); color:white; box-shadow:0 5px 15px rgba(168,85,247,0.4);
+}
+
+.search-newticket { display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; }
+.search-wrapper { position:relative; }
+.search-icon { position:absolute; left:0.75rem; top:50%; transform:translateY(-50%); color:#d8b4fe; }
+.search-input {
+  padding:0.5rem 1rem 0.5rem 2.5rem; border-radius:0.75rem; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.05);
+  color:white; outline:none; transition:all 0.3s;
+}
+.search-input:focus { box-shadow:0 0 0 3px rgba(168,85,247,0.3); transform:scale(1.02); }
+
+.new-ticket-btn {
+  display:flex; align-items:center; gap:0.25rem; padding:0.5rem 1rem; font-weight:600;
+  border-radius:0.75rem; background:linear-gradient(to right,#a855f7,#ec4899); color:white; overflow:hidden; position:relative; transition:all 0.3s;
+}
+.new-ticket-btn::before {
+  content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent); transition:left 0.5s;
+}
+.new-ticket-btn:hover::before { left:100%; }
+.new-ticket-btn:hover { transform:scale(1.05); }
+
+/* ================= TICKETS ================= */
+.tickets-grid { display:grid; gap:1rem; }
+.ticket-card {
+  display:flex; justify-content:space-between; padding:1rem; border-radius:1rem; background:linear-gradient(to br,rgba(255,255,255,0.1),rgba(255,255,255,0.05));
+  border:1px solid rgba(255,255,255,0.1); box-shadow:0 10px 25px rgba(0,0,0,0.15); cursor:pointer;
+  animation:fadeInUp 0.5s ease-out; transition:all 0.3s;
+}
+.ticket-card:hover { transform:translateX(8px) scale(1.01); box-shadow:0 12px 30px rgba(168,85,247,0.25); }
+
+.ticket-left { flex:1; }
+.ticket-tags { display:flex; gap:0.5rem; margin-bottom:0.5rem; }
+.ticket-tags span { font-size:0.7rem; padding:0.2rem 0.5rem; border-radius:0.5rem; font-weight:600; }
+.sla-breach-badge { display:flex; align-items:center; gap:0.25rem; background:rgba(220,38,38,0.2); color:#f87171; border:1px solid rgba(220,38,38,0.3); animation:pulse 2s infinite; }
+
+.ticket-title { font-size:1.1rem; font-weight:bold; color:white; margin-bottom:0.25rem; }
+.ticket-title:hover { color:#d8b4fe; }
+.ticket-desc { color:#d8b4fe; font-size:0.85rem; margin-bottom:0.5rem; }
+
+.ticket-meta { display:flex; gap:1rem; font-size:0.75rem; color:#d8b4fe; }
+.ticket-right { display:flex; flex-direction:column; gap:0.5rem; text-align:right; }
+.assigned-card, .comments-card { padding:0.25rem 0.5rem; border-radius:0.75rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); }
+
+/* ================= LOADING & EMPTY ================= */
+.loading-state, .empty-state { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:5rem 0; color:#d8b4fe; }
+.loading-spinner {
+  border:4px solid rgba(168,85,247,0.2); border-top-color:#a855f7; border-radius:50%; width:3rem; height:3rem; animation:spin 1s linear infinite; margin-bottom:1rem;
+}
+.empty-icon { width:5rem; height:5rem; margin-bottom:1rem; }
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:768px){
+  .stat-card:hover { transform:scale(1.02); }
+  .ticket-card:hover { transform:scale(1.01); }
+  .filter-search { flex-direction:column; }
+  .search-newticket { width:100%; justify-content:space-between; }
+}
